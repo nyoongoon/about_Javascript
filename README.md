@@ -32,5 +32,5 @@ $("#a_").on("click",function(event){
     return false;
 });
 ```
-: jQuery를 사용할 때는 위의 두 개 모두를 수행한 것과 같고
+: jQuery를 사용할 때는 위의 두 개 모두를 수행한 것과 같고 <br/>
 : jQuery를 사용하지 않을 떄는 event.preventDefault()와 같다. 
