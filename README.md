@@ -4,13 +4,13 @@
 <br/><br/>
 
 # Event Bubbling Stop (이벤트 전파 막기)
-- 1. e.preventDefault()
+1. e.preventDefault()
 : 현재 이벤트의 기본 동작을 중단한다. (상위 DOM으로 이벤트 전파는 막지 않음)
-- 2. e.stopPropagation()
+2. e.stopPropagation()
 : 현재 이벤트가 상위 DOM으로 전파되지 않도록 중단한다.
-- 3. e.stopImmediatePropagation()
+3. e.stopImmediatePropagation()
 : 현재 이벤트가 상위뿐 아니라 현재 레벨에 걸린 다른 이벤트도 동작하지 않도록 중단한다.
-- 4. return false
+4. return false
 ``` javascript
 //DIV 영역에 클릭 이벤트 설정
 $("#div_").on("click",function(event){
