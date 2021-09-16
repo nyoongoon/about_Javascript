@@ -3,7 +3,7 @@
 
 # null vs undefined
 
-: undefined -> 아직 존재하지 않거나 더 이상 존재하지 않는 것을 의미.
+: undefined -> 아직 존재하지 않거나 더 이상 존재하지 않는 것을 의미. <br/>
 : null -> 존재하지, 비어 있는 것을 의미.
 
 <br/><br/>
