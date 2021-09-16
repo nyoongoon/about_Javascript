@@ -1,6 +1,11 @@
 # about_Javascript
 자바스크립트를 공부하며 알게 된 것을 기록하는 저장소입니다.
 
+# null vs undefined
+
+: undefined -> 아직 존재하지 않거나 더 이상 존재하지 않는 것을 의미.
+: null -> 존재하지, 비어 있는 것을 의미.
+
 <br/><br/>
 
 # Event Bubbling Stop (이벤트 전파 막기)
