@@ -1,8 +1,14 @@
 # about_Javascript
 자바스크립트를 공부하며 알게 된 것을 기록하는 저장소입니다.
+<br/><br/>
+
+# Bubbling - 버블링이란?
+- 중첩된 요소에서 이벤트가 발생할 때, HTML DOM APLI의 이벤트 전파(Event Propagation)은 두가지 방식으로 구분.  -> 버블링 vs 캡처링
+- 캡처링 : window로부터 이벤트 발생 요소까지 이벤트 전파
+- 버블링 : 이벤트 발생 요소부터 window까지 이벤트 전파
+<br/><br/>
 
 # null vs undefined
-
 : undefined -> 아직 존재하지 않거나 더 이상 존재하지 않는 것을 의미. <br/>
 : null -> 존재하지, 비어 있는 것을 의미.
 
@@ -43,15 +49,23 @@ $("#a_").on("click",function(event){
 
 <br/><br/>
 
+# focus event vs blur event
+- 차이점은 버블링 여부. 
+- focurs - 버블링O , blur - 버블링X.
+- <br/><br/>
+
 # Offset() (오프셋 함수)
 - 선택한 요소의 좌표를 가져오거나 특정 좌표로 이동시키는 메서드. 
+<br/><br/>
 
 # Serialization (직렬화)
 - Ajax에서는 서버와의 비동기식 통신을 위해 form요소를 통해 입력받은 데이터를 직렬화 하여 전송.
 - 직렬화란 입력받은 여러 데이터를 하나의 쿼리 문자열로 만드는 것을 의미. 이렇게 함으로써 form요소를 통해 입력받은 데이터를 한번에 서버에 보낼 수 있게 됨.
+<br/><br/>
 
 # 문자열 포함 여부
 - indexOf() -> 포함하는 문자의 인덱스 반환, 없으면 -1 반환.
+<br/><br/>
 
 # CallBack - 콜백이란?
 - 콜백은 다른 함수가 실행을 끝낸 뒤 실행되는 함수
