@@ -13,6 +13,85 @@
 : null -> 존재하지, 비어 있는 것을 의미.
 
 <br/><br/>
+# Event Binding
+- 이벤트 바인딩이란, 발생하는 이벤트와 그 후에 어떤 일이 벌어질지 알려주는 함수(콜백함수)와 묶어서 연결해준다는 의미. 여기서의 콜백함수를 이벤트 핸들러라고 한다. 
+- 1. HTML 이벤트 핸들러
+- 2. DOM 이벤트 핸들러
+- 3. Event Listener를 이용한 이벤트 핸들러
+
+### 1. HTML 이벤트 핸들러
+``` javascript
+//<button onclick="clickBtn()">Click me</button>
+
+function clickBtn() {
+  alert('Button clicked!');
+   console.log(this); // window
+  console.log(event.currentTarget); // <button onclick="clickBtn()">Click me</button>
+}
+```
+- 옛날 코드. 현재 이 방식은 사용되지 않는다. HTML과 Javascript가 혼용이 되는데, 이 둘은 관심사가 다르기 때문에 같이 사용하는 것을 피해야한다. 
+
+### 2. DOM 이벤트 핸들러
+```javascript
+//<button id="myBtn">Click me</button>
+
+var myBtn = document.getElementById('myBtn');
+
+// 첫번째 바인딩된 이벤트 핸들러 => 실행되지 않는다.
+myBtn.onclick = function () {
+  alert('Button clicked 1');
+};
+
+// 두번째 바인딩된 이벤트 핸들러
+myBtn.onclick = function () {
+  alert('Button clicked 2');
+
+  console.log(this); // <button id="myBtn">Click me!!!</button>
+  console.log(event.currentTarget); // <button id="myBtn">Click me!!!</button>
+  console.log(this === event.currentTarget); // true
+  // this는 이벤트에 바인딩된 요소를 가리킨다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.
+  //myBtn이란 id를 가진 button 요소(myBtn)가 이벤트에 바인딩된 요소를 말한다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.
+};
+```
+
+- HTML과 Javascript가 혼용되는 문제는 해결
+- 단점 
+: 이벤트 핸들러에 하나의 함수만을 바인딩 가능. 
+: 함수에 인수를 전달할 수 없음
+: 바인딩된 이벤트 핸들러가 2개 이상인 경우, 제일 마지막에 추가된 코드의 바인딩된 이벤트 핸들러만 실행.
+
+### 3. EventListener를 이용한 이벤트 핸들러
+``` javascript
+//target.addEventListener(type, listener[, useCapture]);
+
+var el = document.getElementById("outside");
+el.addEventListener("click", function(){modifyText("four")}, false);
+```
+- addEventListener 함수의 인수 
+: type : 이벤트 타입
+: listener : 이벤트 핸들러, 즉 이벤트가 발생했을 때, 실행될 콜백함수
+: useCapture: true면 Capturing, false면 Bubbling(Default: false)
+
+- Event Listener를 이용한 이벤트 핸들러의 장점
+: 하나의 이벤트에 하나 이상의 핸들러를 추가
+: 캡처링과 버블링 지원
+: HTML요소 뿐만아니라 모든 DOM요소에 대해 동작
+
+- Event Listener를 이용한 이벤트 핸들러 내부의 this
+``` javascript
+//<button id="myBtn">Click me!!!</button>
+
+var myBtn = document.getElementById('myBtn');
+myBtn.addEventListener('click', function (event) {
+  console.log(this); // <button id="myBtn">Click me!!!</button>
+  console.log(event.currentTarget); // <button id="myBtn">Click me!!!</button>
+  console.log(this === event.currentTarget); // true
+});
+
+//addEventListener 함수에서 지정한 이벤트 핸들러 내부의 this는 Event Listener에 바인딩된 요소(currentTarget)를 가리킨다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.
+```
+
+<br/><br/>
 
 # Event Bubbling Stop (이벤트 전파 막기)
 1. e.preventDefault()
