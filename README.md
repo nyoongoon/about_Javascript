@@ -90,7 +90,8 @@ myBtn.addEventListener('click', function (event) {
 
 //addEventListener 함수에서 지정한 이벤트 핸들러 내부의 this는 Event Listener에 바인딩된 요소(currentTarget)를 가리킨다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.
 ```
-
+### 4. 동적으로 요소 생성시 이벤트 바인딩 이슈 - rebinding
+- createTextNode() 메서드 또는 jQuery의 append(), after() 메서드와 같이 동적으로 요소를 생성할 경우에는 이벤트 바인딩이 적용되지 않습니다. -> 리바인딩 필요
 <br/><br/>
 
 # Event Bubbling Stop (이벤트 전파 막기)
