@@ -3,7 +3,7 @@
 <br/><br/>
 
 # Ajax & JSON
-- dattype : "json" -> 서버에서 보낸 response 타입. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
+- datetype : "json" -> 서버에서 보내준 response의 타입을 명시. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
 <br/><br/>
 
 # Bubbling - 버블링이란?
