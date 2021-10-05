@@ -2,6 +2,9 @@
 자바스크립트를 공부하며 알게 된 것을 기록하는 저장소입니다.
 <br/><br/>
 
+# ajax & json
+- dattype : "json" -> 서버에서 보낸 response 타입. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
+
 # Bubbling - 버블링이란?
 - 중첩된 요소에서 이벤트가 발생할 때, HTML DOM APLI의 이벤트 전파(Event Propagation)은 두가지 방식으로 구분.  -> 버블링 vs 캡처링
 - 캡처링 : window로부터 이벤트 발생 요소까지 이벤트 전파
