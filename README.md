@@ -170,6 +170,137 @@ foo();  // 99
 - 직렬화란 입력받은 여러 데이터를 하나의 쿼리 문자열로 만드는 것을 의미. 이렇게 함으로써 form요소를 통해 입력받은 데이터를 한번에 서버에 보낼 수 있게 됨.
 <br/><br/>
 
+# this(자바스크립트의 this)
+- this가 다르게 동작하는 네 가지 상황
+- 1 메소드 안에서의 this
+- 2 메소드가 아닌 독립적인 함수 안에서의 this
+- 3 생성자로 인해 호출된 this
+- 4 화살표 함수 안에서의 this
+
+### 1. 메소드 안에서의 this (객체 안에서의 this)
+- 객체가 가지고 있는 함수를 메소드라고 부름. 
+### 전역함수의 경우
+```javascript
+function beaver() {
+  console.log(this);
+  //Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+};
+```
+- 이렇게 전역함수를 선언하면 실제로는 전역 객체(window 혹은 global)안에 함수가 선언되는 것이기 때문에 전역 함수도 결국에는 메소드
+- 위 함수를 호출하면 전역 객체인 Window가 출력됨. 메소드 호출할 시 메소드 안에서 this는 함수를 소유하고 있는 객체가 됨.
+
+### 사용자 생성 객체 안에서의 함수(메소드)인 경우
+```javscript
+var beaver = {
+  foo : function() {
+    console.log(this);
+    }
+}
+beaver.foo(); // 여기서 this 는 beaver가 된다.
+```
+
+
+### 2. 메소드가 아닌 독립적인 함수 안에서의 this (함수 안의 함수에서의 this)
+- 다음과 같이 함수 안에 함수가 선언되는 경우
+```javascript
+function beaver() {
+  function raccoon() {
+    console.log(this);
+    }
+  raccoon();
+}
+beaver(); // Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+```
+- 특정 객체의 함수를 선언한 것이 아닌 독립적인 함수로 선언되고 이런식으로 **객체에 속해있지 않은 함수의 경우** this는 전역객체가 됨.
+
+
+### 3. 생성자로 인해 호출된 this
+```javascript
+function Beaver(name) {
+  this.name = name;
+}
+Beaver("foo");
+console.log(window.name); // "foo"
+```
+- 위 함수에서 this는 전역객체가 되기 떄문에 foo가 출력됨
+``` javascript
+function Beaver(name) {
+  this.name = name;
+}
+
+var foo = new Beaver("foo"); // 이 생성자로 만들어진 객체 this 를 반환
+var bar = new Beaver("bar"); // 이 생성자로 만들어진 객체 this 를 반환
+
+console.log(window.name); // 빈 문자열 "" 이 출력
+console.log(foo.name); // "foo"
+console.log(bar.name); // "bar"
+```
+- new로 인해서 함수를 생성자로 호출하는 경우 함수 안에서 this가 새롭게 만들어진 객체를 가리키게 됨. 
+- new 연산자로 호출한 함수의 생성자는 반환할 때 자기 자신(this)를 반환. 
+
+### 4. 화살표 함수 안에서의 this
+```javascript
+var foo = () => {
+  console.log(this);
+};
+
+var beaver = {
+  foo : foo
+};
+
+foo(); // Window
+beaver.foo(); //Window
+```
+- 원래라면 메소드로 호출된 beacer.foo함수의 결과는 함수를 소유하고 있는 beaver가 this가 되어야 하지만, **화살표 함수**는 함수를 호출하는 영역의 this를 그대로 가져옴.
+
+### 그 외
+### this 정해주기 (call, apply, bind)
+- call과 apply함수를 이용해서 직접 this를 명시적으로 정해줄 수 있음.
+```javascript
+function foo() {
+  console.log(this.name);
+}
+
+var beaver = {
+  name : "dorothy"
+};
+
+foo.call(beaver); // "dorothy"
+```
+- call과 apply는 동일한 결과를 가지지만 사용법에 있어 차이가 있음.
+
+``` javascript
+function profile(age, weight) {
+  console.log(this.name);
+  console.log("age : " + age);
+  console.log("weight : " + weight);
+}
+
+var beaver = {
+  name : "dorothy"
+};
+
+profile.apply(beaver, [4, "2kg"]);
+//profile.call(beaver, 4, "2kg");
+```
+- apply는 매개변수로 전달할 값들ㅇ르 배열로 묶어서 전달, call은 각각의 값을 따로 넣어 전달.
+
+```javascript
+function profile(age, weight) {
+  console.log(this.name);
+  console.log("age : " + age);
+  console.log("weight : " + weight);
+}
+
+var beaver = {
+  name : "dorothy"
+};
+
+profile.bind(beaver)(4, "2kg");
+```
+- bind를 이용해서도 this를 변경할 수 있음. -> 커링(currying)에 대한 이해가 필요. 
+<br/><br/>
+
 # 문자열 포함 여부
 - indexOf() -> 포함하는 문자의 인덱스 반환, 없으면 -1 반환.
 <br/><br/>
