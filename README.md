@@ -137,6 +137,29 @@ $("#a_").on("click",function(event){
 - 차이점은 버블링 여부. 
 - focurs - 버블링O , blur - 버블링X.
 - <br/><br/>
+- 
+# Logical Operator 자바스크립트 논리연산자(||)
+- 자바스크립트 논리 연산자는 참과 거짓을 판단해주는 게 아니라, 피연사자 중 하나를 반환해주는 연산자입니다. 
+- 왼쪽부터 진행하여 가장 먼저 참이 나오는 형태를 가진 value가 나오는 경우, 그 피연산자를 반환해버리고 연산을 끝냅니다.
+``` javascript
+const n1 = true;
+3 || 4     // 3
+n1 || 8    // true
+false || 4 // 4
+0 || 9     // 9
+```
+### 논리연산자의 활용
+``` javascript
+function foo(num) {
+  const n = num || 99; //만약 num값이 들어오지 않는다면, undefined가 됩니다.
+  console.log(n);
+}
+
+foo(3); // 3
+foo();  // 99
+```
+- 출처 : https://mynameisdabin.tistory.com/10?category=786517
+<br/><br/>
 
 # Offset() (오프셋 함수)
 - 선택한 요소의 좌표를 가져오거나 특정 좌표로 이동시키는 메서드. 
