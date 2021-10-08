@@ -343,6 +343,11 @@ profile.bind(beaver)(4, "2kg");
 - bind를 이용해서도 this를 변경할 수 있음. -> 커링(currying)에 대한 이해가 필요. 
 <br/><br/>
 
+# typeof
+- typeof 연산자는 피연산자의 평가 전 자료형을 나타냄. 
+- <br/><br/>
+
+
 # 문자열 포함 여부
 - indexOf() -> 포함하는 문자의 인덱스 반환, 없으면 -1 반환.
 <br/><br/>
