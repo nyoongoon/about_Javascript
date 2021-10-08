@@ -51,6 +51,7 @@ function fn() {
 }
 // x가 참일 경우, foo()를 실행 한 뒤 bar()를 리턴.
 ```
+- 출처 : https://mygumi.tistory.com/50
 <br/><br/>
 
 # null vs undefined
