@@ -12,6 +12,47 @@
 - 버블링 : 이벤트 발생 요소부터 window까지 이벤트 전파
 <br/><br/>
 
+# Comma operator 쉼표 연산자
+- 쉼표 연산자는 각각의 피연산자를 왼쪽에서 오른쪽 순서로 평가하고, 마지막 연산자의 값을 반환. 
+- 콤마를 분리자와 연사자 두 가지로 표현 가능.
+```javascript
+for(var i=0,j=10;i<=j;i++,j--) {
+    console.log(i*j); 
+}
+// i=0,j=10 -> 분리자, i++,j-- -> 연산자
+```
+```javascript
+function nextFibonacci() {
+    next = a + b; 
+    a = b; 
+    b = next; 
+    return next; 
+}
+
+// 쉼표 연산자를 이용해서 깔끔하게 표현 가능
+function nextFibonacci() {
+    next = a + b; 
+    return b = (a = b, next); 
+}
+// a = b를 먼저 실행, next를 리턴.
+
+function fn() {
+    if(x){ 
+        foo(); 
+        return bar(); 
+    }else{ 
+        return 1; 
+    } 
+}
+
+// 쉼표 연산자를 이용해서 깔끔하게 표현 가능
+function fn() { 
+  return x ? (foo(), bar()) : 1; 
+}
+// x가 참일 경우, foo()를 실행 한 뒤 bar()를 리턴.
+```
+<br/><br/>
+
 # null vs undefined
 : undefined -> 아직 존재하지 않거나 더 이상 존재하지 않는 것을 의미. <br/>
 : null -> 존재하지, 비어 있는 것을 의미.
