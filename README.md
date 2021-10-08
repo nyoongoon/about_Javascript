@@ -178,8 +178,38 @@ $("#a_").on("click",function(event){
 # focus event vs blur event
 - 차이점은 버블링 여부. 
 - focurs - 버블링O , blur - 버블링X.
-- <br/><br/>
-- 
+<br/><br/>
+
+# iFrame 
+###  iFrame에서 부모의 함수 호출
+``` jsp
+<!-- parent.jsp-->
+
+<script>
+ function Msg(){
+  alert("호출");
+}
+</script> 
+
+<iframe name="ifrm" src="child.jsp">
+```
+
+```jsp
+<!-- child.jsp-->
+
+<script>
+function sub(){
+  parent.Msg(); //여기서 parent로 부모 참조
+}
+</script>
+
+<input type="button" value="submit" onclick="sub();"/>
+
+<!-- 반대로 부모에서 iFrame함수를 호출할 경우  -->
+<!-- ifrm(name값).sub();-->
+```
+<br/><br/>
+
 # Logical Operator 자바스크립트 논리연산자(||)
 - 자바스크립트 논리 연산자는 참과 거짓을 판단해주는 게 아니라, 피연사자 중 하나를 반환해주는 연산자입니다. 
 - 왼쪽부터 진행하여 가장 먼저 참이 나오는 형태를 가진 value가 나오는 경우, 그 피연산자를 반환해버리고 연산을 끝냅니다.
