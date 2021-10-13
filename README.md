@@ -2,6 +2,17 @@
 자바스크립트를 공부하며 알게 된 것을 기록하는 저장소입니다.
 <br/><br/>
 
+# AJAX vs fetch api
+- AJAX란 서버와 비동기적으로 통신하기 위해 XMLHttpRequest 객체를 사용하는 것. 
+``` javascript
+window.XMLHttpRequest
+```
+- 우리가 알고 있는 위의 객체를 이용해 구현한 $.ajax()는 제이쿼리 라이브러리 함수. 
+- fetch()는 Promise 객체를 반환
+cf) Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실패와 그 결과 값을 나타냅니다.
+- fetch는 자바스크립트 내장 함수. 
+<br/><br/>
+
 # Ajax & JSON
 - datetype : "json" -> 서버에서 보내준 response의 타입을 명시. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
 <br/><br/>
