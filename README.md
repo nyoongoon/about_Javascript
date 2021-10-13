@@ -244,6 +244,90 @@ foo();  // 99
 - 출처 : https://mynameisdabin.tistory.com/10?category=786517
 <br/><br/>
 
+# Node 노드 다루기 
+### 특정 태그 이름 지닌 노드들 찾기
+```javascript
+var nodes = document.getElementsByTagName('div');
+for (var i = 0; i < nodes.length; i++) {
+    var node = nodes.item(i);
+}
+```
+
+### 특정 노드의 자식노드에서 특정 태그이름을 지닌 노드들 찾기
+```javascript
+var nodes = document.getElementsByTagName('div');
+var node2 = nodes[2];
+var node2Childs = node2.getElementsByTagName('div');
+for (var i = 0; i < node2Childs.length; i++) {
+    var node2Child = node2Childs.item(i);
+}
+```
+
+### 문서에서 특정 클래스가 적용된 노드들 찾기
+```javascript
+var contentDatas = document.getElementsByClassName('content_data');
+for(var i = 0; i < contentDatas.length; i++) {
+    contentDatas[i].style.border = "4px solid #ff0000";
+}
+
+```
+
+### 문서에서 특정 ID를 지닌 노드 찾기
+``` javascript
+var header = window.document.getElementById("header");
+header.style.border ="4px solid #ff0000";
+```
+
+### 자식 노드 찾기
+- 자식 노드를 모두 구할 때
+```javascript
+var node = window.document.getElementById("node");
+var childNodes = node.childNodes;
+```
+- 자식 노드 중 N번째 노드에 접근하고 싶을 때
+```javascript
+var childNode = node.childNodes[n];
+var childNode = node.childNodes.item(n);
+```
+- 첫 번째 자식 노드에 바로 접근
+```javascript
+var firstChild = node.firstChild;
+```
+- 마지막 자식 노드에 바로 접근
+```javascript
+var lastChild = node.lastChild;
+```
+
+### 부모 노드 찾기
+- 특정 엘리먼트의 부모노드에 접근하고 싶을 때는 Node객체의 기본 프로퍼티인 parentNode를 사용.
+```javascript
+var header = document.getElementById("header");
+var parentNode = header.parentNode;
+```
+
+### 형제 노드 찾기
+- Node 객체의 프로퍼티인 previousSibling과 nextSibling을 이용하면 앞뒤로 인접한 형제노드에 각각 접근.
+```javascript
+var content = document.getElementById("content");
+var psps = content.previousSibling.previousSibling;
+var nsns = content.nextSibling.nextSibling;
+```
+
+### 노드 생성, 추가 방법 세가지
+- Document.createElement()메서드 사용
+- HTMLElement.innerHTML 프로퍼티 사용.
+- Node.cloneNode() 메서드 하용. 
+
+### 노드 삭제
+- removeChild()
+
+### 텍스트 노드 생성 및 추가
+- Document.createTextNode()
+
+### 텍스트 노드 내용 변경
+- Node.nodeValue = "변경할 값";
+<br/><br/>
+
 # Offset() (오프셋 함수)
 - 선택한 요소의 좌표를 가져오거나 특정 좌표로 이동시키는 메서드. 
 <br/><br/>
