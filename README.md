@@ -502,6 +502,33 @@ profile.bind(beaver)(4, "2kg");
 - bind를 이용해서도 this를 변경할 수 있음. -> 커링(currying)에 대한 이해가 필요. 
 <br/><br/>
 
+# # Toggle 토글 
+- DOMTokenList.toggle()
+- The toggle() method of the DOMTokenList interface removes a given token from the list and returns false. If token doesn't exist it's added and the function returns true.
+- 토글이란 스위치를 on/off하는 듯한 기능을 가짐
+- toggle()뿐만 아니라, add(), remove()메소드를 통해서도 구현 가능
+```javascript
+변수명.addEventListener('click', function(){
+    변수명.classList.toggle('클래스 명');
+//toggle('className') -> 변수에 className이 없을 경우 true반환하고 className 추가 -> 있을 경우 false반환 후 제거
+})
+//ㄴ> classList의 toggle메소드를 통해 해당 클래스의 기능을 껐다 켰다 하는 토글로 구현할 수 있게 된다. 
+```
+- 어떤 조건을 만족할 때 토글 active, 아닐 때 inactive하기
+```javascript
+  function 함수명(){
+    if(조건){
+      변수명.classList.add('클래스 명');
+    }else{
+      변수명.classList.remove('클래스 명');
+    }
+  };
+
+  변수명.addEventListener('click', 함수명);
+```
+<br/><br/>
+
+
 # typeof
 - typeof 연산자는 피연산자의 평가 전 자료형을 나타냄. 
 - <br/><br/>
