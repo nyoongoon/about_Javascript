@@ -186,6 +186,27 @@ $("#a_").on("click",function(event){
 
 <br/><br/>
 
+# Event.target
+- Event interface의 target속성은 event가 전달한 객체에 대한 참조.
+- event.target은 이벤트 버블링의 가장 마지막에 위치한 최하위 요소를 반환.
+- 이벤트의 버블링 또는 캡처 단계에서 이벤트 핸들러를 호출하는 Event.currentTarget과 다름
+- event.currentTarget의 경우 이벤트가 바인딩 된 요소를 반환
+```javascript
+<div onclick ="checkTarget();">
+<span>text</span>
+</div>
+<script>
+  function checkTarget(event){
+    var ele = event.currentTarget;
+    console.log(ele);
+  }
+</script>
+// 사용자가 span을 클릭한 경우 
+// event.target -> 클릭된 span 태그 반환
+// event.currentTaget -> 이벤트가 바인딩된 div 요소를 반환.
+```
+<br/><br/>
+
 # focus event vs blur event
 - 차이점은 버블링 여부. 
 - focurs - 버블링O , blur - 버블링X.
