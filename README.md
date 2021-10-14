@@ -198,7 +198,7 @@ $("#a_").on("click",function(event){
 <script>
   function checkTarget(event){
     var ele = event.currentTarget;
-    console.log(ele);
+    console.log(ele); //div반환
   }
 </script>
 // 사용자가 span을 클릭한 경우 
