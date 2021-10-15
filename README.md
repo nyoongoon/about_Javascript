@@ -68,13 +68,49 @@ function fn() {
 # null vs undefined
 : undefined -> 아직 존재하지 않거나 더 이상 존재하지 않는 것을 의미. <br/>
 : null -> 존재하지, 비어 있는 것을 의미.
-
 <br/><br/>
+
+# Event
+## inlineEvent vs addEventListenr 
+```javascript
+$a = document.querySelector();
+
+//inline event
+$a.setAttibute('onclick', 'f()');
+// -> 하나의 이벤트만 바인딩 가능, 여러개를 쓰면 덮어 씌워진다.
+
+//vs 
+
+$a.onclick = f;
+// 이 코드는 인라인 이벤트 방식과 비슷함. (그래도 html코드가 아닌 script를 사용하고 있기 떄문에 익명 함수, 함수 참조, 클로저 사용이 가능하다.)
+
+//vs
+$a.addEventListener('click', f, false);
+// 다양한 이벤트 등록, 개별적으로 삭제 가능하므로 더 유연함.
+// 세번째인자도 이벤트 버블링 제어 가능.
+// 여러개의 이벤트 타입들을 쉽게 바인딩 할 수 있다.
+['mouseover', 'click'].map(function(e) {
+    obj.addEventListener(e, do1);
+    // 한 배열 객체에서 이벤트 발생 type들을 관리할 수도 있다.
+
+});
+```
+- 출처 : https://dillionmegida.com/p/inline-events-vs-add-event-listeners/
+
+
+- 결론 : add eventListener를 쓰자 !
+- add eventListener 장점
+1. 여러 개의 이벤트를 overwrite할 수 있다.
+2. 작성 중에 bubbling, capturing을 설정할 수 있다.
+3. 여러개의 이벤트 타입들을 쉽게 바인딩 할 수 있다.
+<br/><br/>
+
 # Event Binding(이벤트 바인딩)
 - 이벤트 바인딩이란, 발생하는 이벤트와 그 후에 어떤 일이 벌어질지 알려주는 함수(콜백함수)와 묶어서 연결해준다는 의미. 여기서의 콜백함수를 이벤트 핸들러라고 한다. 
 - 1. HTML 이벤트 핸들러
 - 2. DOM 이벤트 핸들러
 - 3. Event Listener를 이용한 이벤트 핸들러
+
 
 ### 1. HTML 이벤트 핸들러
 ``` javascript
