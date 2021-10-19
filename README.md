@@ -74,6 +74,99 @@ function fn() {
 : null -> 존재하지, 비어 있는 것을 의미.
 <br/><br/>
 
+# Event Loop(이벤트 루프) concurrency(동시성)
+- 브라우저는 단일 쓰레드에서 이벤트 드리븐 방식으로 동작함. 
+- 웹 애플리케이션은 단일 쓰레드임에도 많은 task가 동시에 처리되는 것처럼 느껴진다. 이처럼 자바스크립트의 동시성을 지원하는 것이 이벤트 루프.
+- 대부분의 자바스크립트 엔진은 크게 2개의 영역으로 나뉨.
+### Call Stack (호출 스택)
+- 작업이 요청되면(함수가 호출되면) 스택에 쌓이게 되고 실행, 자스는 하나의 Call Stack을 사용하기 때문에 해당 task가 종료하기 전까지 어떤 task도 수행될 수 없다.
+### Heap
+- 동적으로 생성된 객체 인스턴스가 할당되는 영역.
+- -> 자바스크립트 엔진은 call stack으로 요청된 작업을 순차적으로 실행한 뿐. 동시성을 지원하기 위해 필요한 비동기요청(이벤트 포함)처리는 자바스크립트 엔진을 구동하는 환경. 즉 브라우저, Node.js가 담
+
+### Event Queue(Task Queue)
+- 비동기 처리 함수의 콜백 함수, 비동기식 이벤트 핸들러, Timer함수(setTimeout(), setInterval()의 콜백함수가 보관되는 영역으로 이벤트 루프에 의해 특정 시점(Call Stack이 비어졌을 때 순차적으로 Call Stack으로 이동되어 실행 됨.))
+### Event Loop
+- Call Stack 내에서 현재 실행중인 task가 있는지 그리고 Event Queue에 task가 있는지 반복하여 확인한다. 만약 Call Stack이 비어있다면 Event Queue 내의 task가 Call Stack으로 이동하고 실행된다. 
+
+``` javascript
+function func1() {
+  console.log('func1');
+  func2();
+}
+
+function func2() {
+  setTimeout(function () {
+    console.log('func2');
+  }, 0);
+
+  func3();
+}
+
+function func3() {
+  console.log('func3');
+}
+
+func1();
+```
+- 함수 f1이 호출되면 함수 f1은 Call stack에 쌓인다 그리고 함수 f1은 함수 f2를 호출하므로 함수 f2가 call stack에 쌓이고 setTImeout가 호출된다. setTimeout의 콜백함수는 즉시 실행되지 않고 지정대기시간 만큼 기다리다가 "tick" 이벤트가 발생하면 태스크 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다. 
+
+- 인라인 이벤트 핸들러 방식의 this -> window전역객체
+- 이벤트 핸들러 프로퍼티 방식 -> 이벤트 핸들러 프로ㅓ티 방식에서 이벤트 핸들러는 메소드이므로 내부의 this는 이벤트에 바인딩 된 요소 == e.currentTarget
+- addEventListener메소드 방식 -> addEventListener 메소드에서 지정한 이벤트 핸들러는 콜백함수이지만 이벤트 핸들러의 내부의 this는 이벤트 리스너에 바인딩된 요소(e.curentTarget)을 가리킨다. 
+
+### 이벤트의 흐름
+- 버블링 // 캡처링 -> 주의할 것은 버블링과 캡처링은 둘 중에 하나만 발생하는 것이 아니라 캡처링부터 시작하여 버블링으로 종료.(순차적 발생)
+
+### 이벤트 객체
+- 이벤트가 발생하면 event객체는 동적으로 생성되며 이벤트를 처리할 수 있는 이벤트 핸들러에 인자로 전달된다. 
+
+### 이벤트 객체의 프로퍼티
+- 1 Event.target => 실제로 이벤트를 발생시킨 요소 
+cf) this는 이벤트에 바인딩된 요소를 가리킴. e.target은 실제로 이벤트를 발생시킨 요소를 가키림. 둘은 항상 일치하진 않음.
+ex)
+```
+<html>
+<body>
+  <div class="container">
+    <button id="btn1">Hide me 1</button>
+    <button id="btn2">Hide me 2</button>
+  </div>
+
+  <script>
+    const container = document.querySelector('.container');
+
+    function hide(e) {
+      // e.target은 실제로 이벤트를 발생시킨 DOM 요소를 가리킨다.
+      e.target.style.visibility = 'hidden';
+      // this는 이벤트에 바인딩된 DOM 요소(.container)를 가리킨다. 따라서 .container 요소를 감춘다.
+      // this.style.visibility = 'hidden';
+    }
+
+    container.addEventListener('click', hide);
+  </script>
+</body>
+</html>
+```
+- 2 Event.currentTarget
+- 이벤트에 바인딩된 DOM 요소를 가리킴. 
+- addEventListener 메소드에서 지정한 이벤트 핸들러 내부의 this는 이벤트에 바인딩된 DOM요소를 가키리며 이것은 이벤트 객체의 currentTarget 프로퍼티와 같음. 이벤트 핸들러 함수 내에서 currentTarget과 this는 언제나 일치. 
+- 3 Event.type
+- 4 Event.cancelable 
+- 5 Event.eventPhase -> 0-3
+
+###  Event Delegation 이벤트 위임
+- 이벤트 위임은 다수ㅢ 자식 요소에 각각 이벤트 핸들러를 바인딩 하는 대신 하나의 부모요소에 이벤트 핸들러를 바인딩함. 
+- **동적으로 요소가 추가되는 경우, 아직 추가되지 않은 요소는 DOM에 존재하지 않으므로 이벤트 핸들러를 바인딩할 수 없기 때문에 이러한 경우도 이벤트 위임을 사용한다.**
+- -> 이는 이벤트가 이벤트 흐름에 의해 이벤트를 발생시킨 요소의 부모 요소에도 영향(버블링)을 미치기 때문ㅇ ㅔ가능한 것이다. 
+
+### 기본 동작의 변경
+- 1 Event.preventDefault()
+- 요소가 가지고 있는 기본 동작을 중단
+- 2 Event.stopPropagation()
+- 이벤트를 처리한 후 이벤트가 부모요소로 이벤트가 전파되는 것을 중단시키기 위한 메소드. -> 부모 요소에 동일한 이벤트에 대한 다른 핸들러가 지정되어 있을 경우 사용 됨. 
+<br/><br/>
+
 # Event
 ## inlineEvent vs addEventListenr 
 ```javascript
