@@ -111,6 +111,20 @@ func1();
 ```
 - 함수 f1이 호출되면 함수 f1은 Call stack에 쌓인다 그리고 함수 f1은 함수 f2를 호출하므로 함수 f2가 call stack에 쌓이고 setTImeout가 호출된다. setTimeout의 콜백함수는 즉시 실행되지 않고 지정대기시간 만큼 기다리다가 "tick" 이벤트가 발생하면 태스크 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다. 
 
+```javascript
+console.log('Hi');
+setTimeout(function() {
+    console.log('callback');
+}, 0);
+console.log('Bye');
+//결과 
+//Hi
+//Bye
+//callback <- webapi가 보낸 틱을 받고 이벤트큐에 추가했다가 콜스택으로 이동하여 실행되므로 늦게 실행.
+```
+- -> callback 함수는 0초뒤에 실행시키겠다는 의미가 아니라, webApi의 응답을 0초 뒤에 받아 이벤트큐에 추가할 것이라는 의미 !!!
+
+
 - 인라인 이벤트 핸들러 방식의 this -> window전역객체
 - 이벤트 핸들러 프로퍼티 방식 -> 이벤트 핸들러 프로ㅓ티 방식에서 이벤트 핸들러는 메소드이므로 내부의 this는 이벤트에 바인딩 된 요소 == e.currentTarget
 - addEventListener메소드 방식 -> addEventListener 메소드에서 지정한 이벤트 핸들러는 콜백함수이지만 이벤트 핸들러의 내부의 this는 이벤트 리스너에 바인딩된 요소(e.curentTarget)을 가리킨다. 
