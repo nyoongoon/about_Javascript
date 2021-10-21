@@ -333,6 +333,19 @@ $("#a_").on("click",function(event){
 
 <br/><br/>
 
+# Event.preventDefault()
+- preventDefault()는 정확하게 "태그"의 기본 동작은 막는다는 의미. 따라서 input태그에 preventDefault를 하면 input의 기능을 막게 되는 것. 
+- form의 submit은 막고 input의 require를 살리려는 내 의도대로 한다면 form의 기능을 막아야 함. form 태그에 preventDefault를 사용해야한다. 
+```javascript
+//$submitBtn = document.querySelector('#submitBtn');
+$submitForm = document.querySelector('form');
+$submitForm.addEventListener('submit', sendData);
+function sendData(e){
+  e.preventDefault(); //-> submit은 input이 하는게 아니라, form이 한다 ! 
+}
+```
+<br/><br/>
+
 # Event.target
 - Event interface의 target속성은 event가 전달한 객체에 대한 참조.
 - event.target은 이벤트 버블링의 가장 마지막에 위치한 최하위 요소를 반환.
