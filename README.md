@@ -17,6 +17,10 @@ cf) Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실�
 - datetype : "json" -> 서버에서 보내준 response의 타입을 명시. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
 <br/><br/>
 
+# Blob(Binary Large Object)
+- 파일류의 미가공 불변 데이터를 나타냄. 텍스트와 바이너리 형태로 읽을 수도 있으며, ReadableStream으로 변환한 후 그 메서드를 사용해 데이터를 처리할 수도 있음. 
+- File인터페이스는 사용자 시스템의 파일을 지원하기 위해 Blob인터페이스를 상속함.
+
 # Bubbling - 버블링이란?
 - 중첩된 요소에서 이벤트가 발생할 때, HTML DOM APLI의 이벤트 전파(Event Propagation)은 두가지 방식으로 구분.  -> 버블링 vs 캡처링
 - 캡처링 : window로부터 이벤트 발생 요소까지 이벤트 전파
@@ -367,6 +371,18 @@ function sendData(e){
 ```
 <br/><br/>
 
+
+# File API
+```javascript
+<input type = "file" id ="input">
+```
+- File API는 사용자에 의해 선택된 파일을 나타내는 객체인 File을 포함하는 FileList에 접근할 수 있게 해줌.
+- input요소에 change 이벤트리스너를 붙여 파일의 변경사항을 다룰 수 있음
+
+## File
+## FileList
+<br/><br/>
+
 # focus event vs blur event
 - 차이점은 버블링 여부. 
 - focurs - 버블링O , blur - 버블링X.
@@ -542,6 +558,10 @@ var nsns = content.nextSibling.nextSibling;
 
 # Offset() (오프셋 함수)
 - 선택한 요소의 좌표를 가져오거나 특정 좌표로 이동시키는 메서드. 
+<br/><br/>
+
+# ReadableStream
+- 바이트 데이터를 읽을 수 있는 스트림을 제공. Fetch API는 Response 객체의 body 속성을 통해서 ReadableStream의 구체적인 인스턴스를 제공. 
 <br/><br/>
 
 # Self-invoking anonymous function (자기 호출 익명 함수)
