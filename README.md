@@ -2,6 +2,13 @@
 자바스크립트를 공부하며 알게 된 것을 기록하는 저장소입니다.
 <br/><br/>
 
+# AJAX : dataType vs contentType
+- contentType은 보내는 데이터의 타입.
+- 디폴트는 'application/x-www-form-urlencoded; charset=utf-8'
+- 주로 'application/json; charset=utf-8'
+- dataType은 서버에서 어떤 타입을 받을 것인지.
+<br/><br/>
+
 # AJAX vs fetch api
 - AJAX란 서버와 비동기적으로 통신하기 위해 XMLHttpRequest 객체를 사용하는 것. 
 ``` javascript
