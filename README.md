@@ -85,6 +85,35 @@ function fn() {
 : null -> 존재하지, 비어 있는 것을 의미.
 <br/><br/>
 
+# Dataset (attribute)
+- dataset 속성은 read-only(수정불가)
+- custom data attributes에 read/write 가능하게 해줌 (data-\*)
+- HTML의 data-\* 속성은 DOM의 dataset.property와 일치됨.
+- javascript로 접근하게 될 경우 HTML의 -문자가 지워지고 카멜케이스로 접근가능.
+```javascript
+<div id="user" data-id="1234567890" data-user="johndoe" data-date-of-birth>John Doe</div>
+
+const el = document.querySelector('#user');
+
+// el.id === 'user'
+// el.dataset.id === '1234567890'
+// el.dataset.user === 'johndoe'
+// el.dataset.dateOfBirth === ''
+
+// set a data attribute
+el.dataset.dateOfBirth = '1960-10-03';
+// Result: el.dataset.dateOfBirth === '1960-10-03'
+
+delete el.dataset.dateOfBirth;
+// Result: el.dataset.dateOfBirth === undefined
+
+if ('someDataAttr' in el.dataset === false) {
+  el.dataset.someDataAttr = 'mydata';
+  // Result: 'someDataAttr' in el.dataset === true
+}
+```
+<br/><br/>
+
 # Event Delegation 이벤트 위임
 - 비슷한 방식으로 여러 요소를 다룰 때
 - 이벤트 위임이란 동적으로 노드를 생성하고 삭제할 때 각 노드에 대해 이벤트를 추가하지 않고, 상위 노드에서 하위 노드의 이벤트를 제어하는 방식 
@@ -103,6 +132,7 @@ table.onclick = function(event) {
 - 1 elem.closest(selector)메서드는 elem의 상위 요소 중 selector와 일치하면서 가장 가까운 부모 요소를 반환함. 
 - event.target.closest('td');는 이벤트가 발생한 요소로부터 시작해 위로 올라가며 가장 가까운 td요소를 찾음.
 - 3 중첩 테이블이 있는 경우 event.target은 현재 테이블 바깥의 td가 될수도 잇음. 이런 경우를 처리하기 위해 td가 table 안에 있는지를 확인.
+<br/><br/>
 
 # Event Loop(이벤트 루프) concurrency(동시성)
 - 브라우저는 단일 쓰레드에서 이벤트 드리븐 방식으로 동작함. 
