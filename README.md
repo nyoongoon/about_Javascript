@@ -85,6 +85,25 @@ function fn() {
 : null -> 존재하지, 비어 있는 것을 의미.
 <br/><br/>
 
+# Event Delegation 이벤트 위임
+- 비슷한 방식으로 여러 요소를 다룰 때
+- 이벤트 위임이란 동적으로 노드를 생성하고 삭제할 때 각 노드에 대해 이벤트를 추가하지 않고, 상위 노드에서 하위 노드의 이벤트를 제어하는 방식 
+
+```javascript
+table.onclick = function(event) {
+  let td = event.target.closest('td'); // (1)
+
+  if (!td) return; // (2)
+
+  if (!table.contains(td)) return; // (3)
+
+  highlight(td); // (4)
+};
+```
+- 1 elem.closest(selector)메서드는 elem의 상위 요소 중 selector와 일치하면서 가장 가까운 부모 요소를 반환함. 
+- event.target.closest('td');는 이벤트가 발생한 요소로부터 시작해 위로 올라가며 가장 가까운 td요소를 찾음.
+- 3 중첩 테이블이 있는 경우 event.target은 현재 테이블 바깥의 td가 될수도 잇음. 이런 경우를 처리하기 위해 td가 table 안에 있는지를 확인.
+
 # Event Loop(이벤트 루프) concurrency(동시성)
 - 브라우저는 단일 쓰레드에서 이벤트 드리븐 방식으로 동작함. 
 - 웹 애플리케이션은 단일 쓰레드임에도 많은 task가 동시에 처리되는 것처럼 느껴진다. 이처럼 자바스크립트의 동시성을 지원하는 것이 이벤트 루프.
