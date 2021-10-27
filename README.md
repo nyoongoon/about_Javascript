@@ -114,6 +114,12 @@ if ('someDataAttr' in el.dataset === false) {
 ```
 <br/><br/>
 
+# elem.querySelectorAll vs elem.closest
+- elem.querySelectorAll -> elem의 자식 노드 중에서 검색
+- elem.closest -> 자기자신을 포함하여 검색 
+
+<br/><br/>
+
 # Event Delegation 이벤트 위임
 - 비슷한 방식으로 여러 요소를 다룰 때
 - 이벤트 위임이란 동적으로 노드를 생성하고 삭제할 때 각 노드에 대해 이벤트를 추가하지 않고, 상위 노드에서 하위 노드의 이벤트를 제어하는 방식 
