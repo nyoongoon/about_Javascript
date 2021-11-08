@@ -20,6 +20,32 @@ cf) Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실�
 - fetch는 자바스크립트 내장 함수. 
 <br/><br/>
 
+# AJAX FormData 전송하기
+### FormData 객체
+- FormData 인터페이스는 form 필드를 키/값의 쌍으로 생성시켜줌.  "multipart/form-data"로 인코딩되어 있다면 일반 form과 같은 형식을 가진다. 
+- FormData.set() vs .append()
+- set()은 덮어쓰기, append() 뒤에 추가. 
+### ajax부분
+- 파일도 전송할 경우.
+``` 
+  $.ajax({
+     url : "url"
+     processData: false,
+     contentType: false,
+     cache: false,
+     data: formData,
+     type: 'POST',
+     success: function(data){
+       $("#id").html(data);
+     });
+```
+- processData: false
+- 디폴트값은 서버에 전달되는 데이터를 query String으로 보내는 것. 파일전송에는 이를 피해야함으로 false 설정.
+- contentType: false
+- 기본값은 "application/x-www-form-urlencoded". 이는 영 숫자가 아닌 데이터를 3바이트로 표현하기 때문에 바이너리 파일을 전송할 때 무척 비효율적임.
+- false설정으로 "multipart/form-data"로 설정할 수 있다. 바이너리 데이터는 효율적으로 보낼 수 있으나, 데이터가 텍스트만으로 이루어진 post전송은 오히려 mime헤더가 추가되기 때문에 오버헤드가 발생
+<br/><br/>
+
 # Ajax & JSON
 - datetype : "json" -> 서버에서 보내준 response의 타입을 명시. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
 <br/><br/>
