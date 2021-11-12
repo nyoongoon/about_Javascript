@@ -527,6 +527,14 @@ cf)<br/>
 - ajax는 div 스타일 값으로 스크롤 생성해주어야함
 <br/><br/>
 
+# Javscript append&prepend VS jQuery append&prepend
+- 기본적으로 자바스크립트가 jQuery보다 빠르다. 
+
+- 자바스크립트의 append와 prepend메소드는 하나의 HTML요소만 추가할 수 있는데 비해여 jQuery의 append prerpend 메소드는 여러개의 HTML 요소를 추가할 수 있다.
+- 자바스크립트의 append prepend메소드는 HTML 요소와 string(textNode로 변환됨)만 추가할 수 있다.
+- jQuery의 append prepend 메소드는 HTML 요소, htmlString, jQuery 객체, 일반 텍스트, HTML 요소를 가진 배열을 추가할 수도 있다.
+<br/><br/>
+
 # Logical Operator 자바스크립트 논리연산자(||)
 - 자바스크립트 논리 연산자는 참과 거짓을 판단해주는 게 아니라, 피연사자 중 하나를 반환해주는 연산자입니다. 
 - 왼쪽부터 진행하여 가장 먼저 참이 나오는 형태를 가진 value가 나오는 경우, 그 피연산자를 반환해버리고 연산을 끝냅니다.
