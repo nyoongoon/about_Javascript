@@ -857,6 +857,20 @@ profile.bind(beaver)(4, "2kg");
 - bind를 이용해서도 this를 변경할 수 있음. -> 커링(currying)에 대한 이해가 필요. 
 <br/><br/>
 
+# #text(white space)
+- 공백은 하나의 요소로 구분되어 #text라는 NodeName을 갖는다. 
+### no whitespace node  
+- children()  
+- nextElementSibling()  
+- previousElementSibling()  
+- firstElementChild() 
+### contains whitespace node
+- childNodes()
+- nextSibling()
+- previousSibling()
+- firstChild()
+<br/><br/>
+
 # # Toggle 토글 
 - DOMTokenList.toggle()
 - The toggle() method of the DOMTokenList interface removes a given token from the list and returns false. If token doesn't exist it's added and the function returns true.
