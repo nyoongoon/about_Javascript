@@ -527,6 +527,18 @@ cf)<br/>
 - ajax는 div 스타일 값으로 스크롤 생성해주어야함
 <br/><br/>
 
+# insertAdjacentHTML()
+- innerHTML += 하고 나서 Event Listener가 사라짐.
+- cf) innerHTMl의 값을 대입(설정)하면 모든 자손이 제거되고 문자열 htmlString에 지정된 HTMl을 파싱하고, 생성된 노드로 대체함. 
+### insertAdjacentHTML()
+- 기존의 사용중인 요소를 다시 파싱하지 않고 요소를 삽입한다. 따라서 innerHTML보다 빠른 성능을 가진다. 
+### position
+- beforebegin : 요소 앞에.
+- afterbegin : 요소 안, 자식 앞에.
+- beforeend : 요소 안, 자식 뒤에.
+- afterend : 요소 뒤에. 
+<br/><br/>
+
 # Javscript append&prepend VS jQuery append&prepend
 - 기본적으로 자바스크립트가 jQuery보다 빠르다. 
 
