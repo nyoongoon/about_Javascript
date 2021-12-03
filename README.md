@@ -689,6 +689,69 @@ var nsns = content.nextSibling.nextSibling;
 - 선택한 요소의 좌표를 가져오거나 특정 좌표로 이동시키는 메서드. 
 <br/><br/>
 
+## Promise
+## Promise 선언부의 4가지 상태
+### pending 
+- Promise가 생성되는 직후로부터 resolve나 reject가 호출되기 전까지의 순간
+- 이후 비동기 작업이 마친 뒤 결과물을 약속대로 줄 수 있다면 resolve함수 호출, 실패했다면 reject함수를 호출. 
+
+- fufilled
+- rejected
+- settled
+## Promise 객체
+```javascript
+var _promise = function (param) {
+  return new Promise(function (resolve, reject) {
+    // 비동기를 표현하기 위해 setTimeout 함수를 사용 
+    window.setTimeout(function () {
+      // 파라메터가 참이면, 
+      if (param) {
+        // 해결됨 
+        resolve("해결 완료");
+      }
+      // 파라메터가 거짓이면, 
+      else {
+        // 실패 
+        reject(Error("실패!!"));
+      }
+    }, 3000);
+  });
+};
+
+//Promise 실행
+_promise(true)
+.then(function (text) {
+  // 성공시
+  console.log(text);
+}, function (error) {
+  // 실패시 
+  console.error(error);
+});
+```
+
+- Promise 객체에는 정상적으로 비동기작업이 완료되었을 때 호출하는 then이라는 API가 존재한다. 
+- then API는 첫번째 파라메터에 성공시 호출할 함수를, 두번째 파라메터에 실패시 호출할 함수를 선언하면 Promise의 상태에 따라 수행하게 된다. 
+
+## Promise.all
+- 여러개의 비동기 작업들이 존재하고 이들이 모두 완료되었을 때 작업을 진행할 경우.
+
+## return 하지 않고 바로 new Promise 생성하기
+```javascript
+var _promise = new Promise(function(resolve, reject) {
+  // 여기에서는 무엇인가 수행 
+  // 50프로 확률로 resolve 
+  if (+new Date()%2 === 0) {
+    resolve("Stuff worked!");  
+  }
+  else {
+    reject(Error("It broke"));
+  }
+});
+```
+- 위 같이 선언할 경우 Promise 객체에 파라메터로 넘겨준 익명함수를 즉각 실행함. 즉각 실행되므로 \_promise.then(alert) 등의 형태로 사용할 수 있다. 
+- 이후 여러차례 \_promise.then()을 호출해도 이미 한 번 수행되었기 때문에 같은 결과가 수행 될 것.
+<br/><br/>
+
 # ReadableStream
 - 바이트 데이터를 읽을 수 있는 스트림을 제공. Fetch API는 Response 객체의 body 속성을 통해서 ReadableStream의 구체적인 인스턴스를 제공. 
 <br/><br/>
