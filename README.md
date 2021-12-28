@@ -2,6 +2,34 @@
 자바스크립트를 공부하며 알게 된 것을 기록하는 저장소입니다.
 <br/><br/>
 
+# ajax 뒤로가기 (앵커)
+- ajax가 실행될 때마다 url에 #단어를 붙여준다.
+- 이를 앵커라고 하는데 문서에서 #뒤에 붙은 id를 가진 요소로 자동 이동하게 되는데, 
+- 이는 서버에 요청을 보내는 것이 아니라 현재 페이지 내에서 이동만 하게 된다. 
+- 브라우저는 url이 바뀐것으로 인식하기 때문에 앵커를 이동할 때마다 뒤로가기를 할 수 있음. 
+
+### window.location.hash 
+``` 
+<a id="myAnchor" href="/en-US/docs/Location.href#Examples">Examples</a>
+<script>
+  var anchor = document.getElementById("myAnchor");
+  console.log(anchor.hash); // Returns '#Examples'
+</script>
+```
+- /hash#page1 로 접속하더라고 서버에는 /hash만 남고 뒤의 #page1은 브라우저가 처리하는 부분, 뒤로 가기를 할 때도 서버에 새로 요청을 보내지 않음. 
+- 히스토리는 남지만 서버가 인식하는 주소가 같기 때문에 각 앵커에 따라 적정한 글 목록을 보여주는 부분을 따로 구현해야함. 
+- 주소에서 해시가 달라지는 이벤트를 받아서 해시가 달라지면 해시를 파싱해서 페이지 번호를 가져오고 새로온 목록을 가져옴. 
+```javscript
+// 해시가 달라지면(뒤로가기를 누르면) 호출되는 리스너.
+$(window).on('hashchange', function() {
+  var page = parseInt(location.hash.slice(5));
+  if (!!page && currentPage !== page) {
+    getList(page);
+  }
+});
+```
+- 결론적으로 ajax로 요청했던 데이터 셋을 임시로 보관하고, 해당 조건을 만족시킨 경우 다시 데이터를 꺼내서 ajax를 다시 요청하는 로직 !!!
+
 # AJAX : dataType vs contentType
 - contentType은 보내는 데이터의 타입.
 - 디폴트는 'application/x-www-form-urlencoded; charset=utf-8'
