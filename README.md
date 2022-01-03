@@ -494,6 +494,9 @@ function sendData(e){
 ```
 <br/><br/>
 
+# 이벤트 리스너 안의 this
+ - 이벤트 리스너 안의 this는 e.currentTarget을 가리킴.
+<br/><br/>
 
 # File API
 ```javascript
@@ -810,6 +813,20 @@ var _promise = new Promise(function(resolve, reject) {
 - 위 같이 선언할 경우 Promise 객체에 파라메터로 넘겨준 익명함수를 즉각 실행함. 즉각 실행되므로 \_promise.then(alert) 등의 형태로 사용할 수 있다. 
 - 이후 여러차례 \_promise.then()을 호출해도 이미 한 번 수행되었기 때문에 같은 결과가 수행 될 것.
 <br/><br/>
+
+# Prototype
+ - javascript에서 객체를 상속하기 위하여 사용하는 방식.
+ - 모든 객체들이 메소드와 속성들을 상속 받기 위한 템플릿으로써 프로토타입 객체를 가진다는 의미.
+ - 정확히 말하자만 상속되는 속성과 메소드들은 각 객체가 아니라 객체의 생성자의 prototype이라는 속성에 정의됨.
+
+### 프로토타입 속성(Object.prototype)
+- 상속 받은 멤버들이 정의된 곳.
+ 
+- cf) 프로토타입 객체 vs 프로토타입 속성. 
+- 프로토타입 객체는 -> \_proto\_ 속성으로 접근 가능한 내장 객체.
+- 프로토타입 속성은 -> 상속시키려는 멤버들이 정의된 객체.
+<br/><br/>
+
 
 # ReadableStream
 - 바이트 데이터를 읽을 수 있는 스트림을 제공. Fetch API는 Response 객체의 body 속성을 통해서 ReadableStream의 구체적인 인스턴스를 제공. 
