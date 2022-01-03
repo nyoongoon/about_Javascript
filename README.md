@@ -815,6 +815,7 @@ var _promise = new Promise(function(resolve, reject) {
 <br/><br/>
 
 # Prototype
+https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67
  - javascript에서 객체를 상속하기 위하여 사용하는 방식.
  - 모든 객체들이 메소드와 속성들을 상속 받기 위한 템플릿으로써 프로토타입 객체를 가진다는 의미.
  - 정확히 말하자만 상속되는 속성과 메소드들은 각 객체가 아니라 객체의 생성자의 prototype이라는 속성에 정의됨.
@@ -824,7 +825,21 @@ var _promise = new Promise(function(resolve, reject) {
  
 - cf) 프로토타입 객체 vs 프로토타입 속성. 
 - 프로토타입 객체는 -> \_proto\_ 속성으로 접근 가능한 내장 객체.
-- 프로토타입 속성은 -> 상속시키려는 멤버들이 정의된 객체.
+- 프로토타입 속성은 -> 상속시키려는 멤버들이 정의된 객체. 
+
+### Prototype Object (프로토타입 객체)
+- 자바스크립트에서 객체는 언제나 함수(Function)으로 생성됨.
+
+```javascript
+funcion Person(){} // 함수
+var personObject = new Person(); // 함수로 객체를 생성.
+```
+- cf) 함수가 정의될 때 두가지.
+- 1. 해당 함수에 Contructor (생성자)자격 부여 -> new 키워드 사용 가능
+- 2. 해당 함수의 Prototype Object생성 및 연결
+- 함수를 정의하면 함수만 생성되는 것이 아니라 Prototype Object도 같이 생성 됨.
+- 생성된 함수는 prototype이라는 속성을 통해 Prototype Object에 접근할 수 있음. Prototype Object는 일반적인 객체와 같으며 기본적인 속성으로 constructor와\_proto\_를 가지고 있음. 
+- \_proto\_가 Prototype Link임.
 <br/><br/>
 
 
