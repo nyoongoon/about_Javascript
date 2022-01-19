@@ -168,6 +168,27 @@ if ('someDataAttr' in el.dataset === false) {
 ```
 <br/><br/>
 
+# Drag and Drop API
+
+### Drag Event 
+- Drag Event 인터페이스는 하나의 생성자와 하나의 dataTransfer 속성(DataTransfer 객체)을 갖는다. 
+
+### DataTransfer 
+- 드래그 이벤트의 상태를 포함하여, 그대그의 데이터, 밈타입를 갖는다. 
+
+- 각각의 DataTransfer 객체는 items 속성을 갖는다. items 속성은 DataTransferItem의 리스트이다. 하나의 DataTransferItem 객체는 하나의 drag item을 나타낸다. 각각의 drag item 은 kind(string or file) 속성과 type(MIME type) 속성을 갖는다. 
+
+### DataTransfer VS DataTransferItem
+
+- DataTransfer는 동기적인 getData() 를 갖음.
+- DataTransferItem은 비동기적인 getAsString() 을 갖음.
+
+
+### 요소를 draggable하게 만들기
+- 요소를 draggable하게 하기 위해선 요소에 draggable 속성과, ondragstart 글로벌 이벤트 핸들러를 만들어야한다. 
+
+<br/><br/>
+
 # elem.querySelectorAll vs elem.closest
 - elem.querySelectorAll -> elem의 자식 노드 중에서 검색
 - elem.closest -> 자기자신을 포함하여 검색 
