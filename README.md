@@ -78,6 +78,74 @@ cf) Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실�
 - datetype : "json" -> 서버에서 보내준 response의 타입을 명시. 서버로 데이터를 보내기만하고 받지 않는 경우 명시하면 안된다. 
 <br/><br/>
 
+# animation
+
+## CSS animation
+
+### CSS Transition
+```css
+.animated{
+  transition-property: background-color;
+  transition-duration: 3s;
+}
+```
+### transition
+```
+transition-property
+transition-duration
+transition-timing-function
+transition-delay
+```
+- transition 라는 공통 프로퍼티를 통해 네가지 프로퍼티를 한꺼번에 선언할 수 있음. 
+
+
+### transition-property
+- 애니메이션 효과를 적용할 프로퍼티 목록을 정의함.
+
+### transition-duration
+- 애니메이션 효과를 얼마 동안 줄지를 설정. 
+
+### transition-delay
+- 애니메이션 효과가 시작되기 전에 얼마만큼의 지연 시간을 줄 지 설정.
+- 음수 값을 넣으면 효과가 중간부터 나타남. 
+
+### transition-timing-function
+- timing 함수를 만들어 시간에 따라 애니메이션 효과를 어떻게 분배할 지 설정 가능. 
+- 프로퍼티 값에 베지어 곡선이나 단계가 올 수 있음.
+
+### 베지어 곡선 
+- cubic-bezier(x2, y2, x3, y3)형태로 정의
+- 조절점을 변경해 만든 베지어 곡선을 사용해 정의한 timing 함수는 시간이 지남에 따라 얼마나 빠르게 애니메이션 효과가 나타나게 할지를 보여줌. 
+- 위처럼 직접 베지어 곡선을 만들 수도 있지만, css에 내장되어 있는 내장 곡선을 사용할 수도 있음.
+ - ease (0.25, 0.1, 0.25, 1.0)
+ - ease-in (0.42, 0, 1.0, 1.0)
+ - ease-out (0, 0, 0.58, 1.0)
+ - ease-in-out (0.42, 0, 0.58, 1.0)
+
+### steps()
+- timing 함수 steps(number of steps\[, start/end\])를 사용하면 애니메이션을 여러 단계로 나눌 수 있음. 
+
+## javascript animation
+
+### Using setInerval
+- 애니메이션은 프레임의 시퀀스를 구현하여 보여줄 수 있음. 
+``` javascript
+let timer = setInterval(function() {
+  if (animation complete) {clearInterval(timer);
+  }else {
+    //increase style.left by 2px
+  }
+}, 20);
+```
+### Using window.requestAnimationFrame
+- 브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트가 진행되기 전에 해당 애니메이션을 업데이트하는 함수를 호출하게 함. 이 메소드는 리페인트 이전에 실행할 콜백을 인자로 받음. 
+
+- 브라우저가 화면에 무언가를 그리는 과정은 : javascript -> style -> layout -> paint ->composite 과정이 있음
+- 애니메이션을 수행하기 위해 setInterval()을 사용하는데, 이 같은 함수들은 주어진 시간 내에 동작을 할 뿐 위에서 언급한 과정을 고려하지 않음.
+- requestAnimationFrame()은 실제 화면이 갱신되어 표시되는 주기에 따라 함수를 호출해주기 때문에, 자바스크립트가 프레임 시작 시 실행되도록 보장해줌. 
+- setTimeout(), setInterval()은 보이지 않은 곳에서도 수행되지만 requestAnimationFrame()은 현재 창에 표시되지 않으면 애니메이션을 중지. 
+<br/><br/>
+
 # Blob(Binary Large Object)
 - 파일류의 미가공 불변 데이터를 나타냄. 텍스트와 바이너리 형태로 읽을 수도 있으며, ReadableStream으로 변환한 후 그 메서드를 사용해 데이터를 처리할 수도 있음. 
 - File인터페이스는 사용자 시스템의 파일을 지원하기 위해 Blob인터페이스를 상속함.
