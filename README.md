@@ -263,6 +263,14 @@ if ('someDataAttr' in el.dataset === false) {
 
 <br/><br/>
 
+# dispatchEvent()
+- EventTarget 객체의 dispatchEvent() 메소드는 동기적으로 이벤트를 객체에 전송하면서 이벤트 리스너들을 순서대로 실행시킨다.  
+
+- dispatchEvent()를 실행시키는 것은 이벤트 발생의 마지막 단계이다. 이벤트는 그 전에 Event()생성자를 통해 생성되고 시작되어야 한다.
+
+- 비동기적으로 실행되는 네이티브 이벤트와는 달리, dispatchEvent()는 이벤트 핸들러를 동기적으로 실행시킨다. 실행가능한 모든 이벤트 핸들러들은 dispatchEvent()가 리턴되기 전에 실행되어지고 리턴된다. 
+<br/><br/>
+
 # Event Delegation 이벤트 위임
 - 비슷한 방식으로 여러 요소를 다룰 때
 - 이벤트 위임이란 동적으로 노드를 생성하고 삭제할 때 각 노드에 대해 이벤트를 추가하지 않고, 상위 노드에서 하위 노드의 이벤트를 제어하는 방식 
