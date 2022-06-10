@@ -146,6 +146,41 @@ let timer = setInterval(function() {
 - setTimeout(), setInterval()은 보이지 않은 곳에서도 수행되지만 requestAnimationFrame()은 현재 창에 표시되지 않으면 애니메이션을 중지. 
 <br/><br/>
 
+
+# 비동기 처리 & 콜백 처리
+```javascript
+// 자바스크립트는 비동기적이다.
+// 호이스팅으로 정렬되기 전에 코드 블럭이 실행된다.
+// 호이스팅 : 변수, function, declaration 같은 선언들이 제일 위로 올라가는 것이 호이스팅
+console.log('1');
+
+setTimeout(() => {
+    console.log('2'); // =>  콜백 함수 (파라미터 인자로 들어가 있는 함수 -> 나중에 전달할 목적).
+}, 1000);
+
+console.log('3');
+
+
+
+// 동기적 콜백
+function printImmediately(print){ // 콜백을 받아서 바로 실행하고 있음
+    print();
+}
+
+printImmediately(()=>{console.log("hello")});
+
+// 비동기적 콜백
+function printWithDelay(print, timeout){
+    setTimeout(print, timeout);
+}
+
+printWithDelay(()=>console.log('async callback'), 2000); // 첫번째 파라미터가 콜백함
+
+//10분
+```
+<br/><br/>
+
+
 # Blob(Binary Large Object)
 - 파일류의 미가공 불변 데이터를 나타냄. 텍스트와 바이너리 형태로 읽을 수도 있으며, ReadableStream으로 변환한 후 그 메서드를 사용해 데이터를 처리할 수도 있음. 
 - File인터페이스는 사용자 시스템의 파일을 지원하기 위해 Blob인터페이스를 상속함.
